@@ -1,5 +1,7 @@
 package analyzer;
 
+import customIO.TextFileWrapper;
+
 public class SentenceCounter extends InputAnalyzer {
     @Override
     protected long analyze(String text) {
@@ -11,7 +13,9 @@ public class SentenceCounter extends InputAnalyzer {
     }
 
     @Override
-    protected void showOutput(long count) {
-        System.out.println("Sentence count in the text: " + count);
+    protected void showOutput(long count) throws Exception {
+        try (TextFileWrapper text = new TextFileWrapper()) {
+            text.write("SentenceCount", "Sentence count in the text: " + count);
+        }
     }
 }
